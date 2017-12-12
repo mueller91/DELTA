@@ -79,7 +79,7 @@ $ sudo visudo
 In the bottom of the file, type the follow:
 username ALL=(ALL) NOPASSWD: ALL
 ```
-+ Configure passwd-less ssh login for the agents
++ Configure passwd-less ssh login for the agents using: username, pw = vagrant, vagrant
 
 ```
 $ vi <DELTA>/tools/dev/delta-setup/bash_profile
@@ -121,7 +121,7 @@ AM_PORT=3366
 ```
 > Floodlight 1.2
 ```
-$ cd <DELTA>/tools/dev/app-agent-setup
+$ cd <DELTA>/tools/dev/app-agent-setup/floodlight
 $ ./floodlight-1.2-scp
 ```
 > ONOS 1.1

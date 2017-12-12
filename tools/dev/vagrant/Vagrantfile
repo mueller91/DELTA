@@ -29,12 +29,13 @@ Vagrant.configure(2) do |config|
     d.vm.hostname = "controller-vm"
     d.vm.network "private_network", ip: "10.100.100.11"
     d.vm.network "private_network", ip: "10.100.200.11"
-    d.vm.provision :shell, path: "scripts/java8-oracle.sh"
     d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       v.memory = 8192
       v.cpus = 2
     end
+    d.vm.provision :shell, path: "scripts/java8-oracle.sh"
   end
 
   config.vm.define "channel" do |d|
@@ -42,12 +43,13 @@ Vagrant.configure(2) do |config|
     d.vm.hostname = "channel-vm"
     d.vm.network "private_network", ip: "10.100.100.12"
     d.vm.network "private_network", ip: "10.100.200.12"
-    d.vm.provision :shell, path: "scripts/java8-oracle.sh"
-    d.vm.provision :shell, path: "scripts/mininet.sh"
     d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       v.memory = 2048
     end
+    d.vm.provision :shell, path: "scripts/java8-oracle.sh"
+    d.vm.provision :shell, path: "scripts/mininet.sh"
   end
 
   config.vm.define "mininet" do |d|
@@ -58,9 +60,12 @@ Vagrant.configure(2) do |config|
     d.vm.provision :shell, path: "scripts/java8-oracle.sh"
     d.vm.provision :shell, path: "scripts/mininet.sh"
     d.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
       v.memory = 2048
     end
+    d.vm.provision :shell, path: "scripts/java8-oracle.sh"
+    d.vm.provision :shell, path: "scripts/mininet.sh"
   end
 
 end
